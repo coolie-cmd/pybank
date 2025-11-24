@@ -82,10 +82,4 @@ if __name__== "__main__":
 
          print("thank u for choosing pybank")
          print("u are very welcome.")
-
-
-
-    
-
-
-
+          
