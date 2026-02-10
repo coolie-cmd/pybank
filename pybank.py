@@ -5,21 +5,21 @@ class Bank:
       self.balance = balance
       self.pin = pin 
 
-    def pinCheck(self):
+    def pinCheck(self):   #this function is supposed to check on the set password and return a boolean value
        i = 1
        trial = 0
-       while i<=5:
-          while trial == self.pin:
-             trial = input("enter secret pin: ")
-             if trial == self.pin:
-                print("u may proceed 😊 ")
-                break
+       while i<=5:    #proper and careful indentiation is key
+          trial = int(input("enter secret pin: "))
+          if trial == self.pin:
+             print("u may proceed 😊 ")
+             return True #this is the boolean value if the password is correct
+          else:
+             print(f"u are wrong. u have {5-i} trials left.")
+             if 5-i == 0 :
+                print("u have failed in all allowed trials. u cant login again.")
+                return False
              else:
-                print(f"u are wrong. u have {5-i} trials left.")
-                if 5-i == 0 :
-                   print("u have failed in all allowed trials. u cant login again.")
-                   break
-          i+=1   
+                i+=1 #iterates and increases up to 5 times
 
     def deposit(self):
        amount = int(input("enter amount u wnat to deposit int ur bank account: "))
@@ -58,6 +58,7 @@ if __name__== "__main__":
    print(f"ur bank account is set {name} ")
    choice =0
    while choice != 4:
+      print("  ")
       print("MAIN MENU")
       print("1.deposit")
       print("2.withdraw")
@@ -66,8 +67,13 @@ if __name__== "__main__":
       choice=input('enter ur choice according to the numbers: ')
       if choice == '1':
          bank.pinCheck()
-         bank.deposit()
-         bank.checkBalance()
+
+         if bank.pinCheck():
+             bank.deposit()
+             bank.checkBalance()
+         else:
+            break
+
       elif choice == '2':
          bank.pinCheck()
          bank.withdraw()
@@ -75,11 +81,11 @@ if __name__== "__main__":
       elif choice == "3":
          bank.checkBalance()
       elif choice == '4':
-         sys.exit("goodbye!")
+         sys.exit("goodbye!")  
       
       else:
          print("invalid choice")
 
          print("thank u for choosing pybank")
          print("u are very welcome.")
-          
+
